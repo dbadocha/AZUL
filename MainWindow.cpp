@@ -25,7 +25,7 @@ MainMenu *MainWindow::addMenu() {
 }
 
 void MainWindow::addBackground() {
-	QPixmap background(":/Resources/Resources/Background.jpg");
+	QPixmap background(":/images/Resources/Images/Background.jpg");
 	background = background.scaled(this->size(), Qt::IgnoreAspectRatio);
 	QPalette palette;
 	palette.setBrush(QPalette::Background, background);

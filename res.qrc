@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Resources/Images/Background.jpg</file>
+        <file>Resources/Images/Player'sBoard.jpg</file>
+        <file>Resources/Images/Table.jpg</file>
+        <file>Resources/Images/TileBlack.jpg</file>
+        <file>Resources/Images/TileBlue.jpg</file>
+        <file>Resources/Images/TileRed.jpg</file>
+        <file>Resources/Images/TileWhite.jpg</file>
+        <file>Resources/Images/TileYellow.jpg</file>
+        <file>Resources/Images/Workshop.jpg</file>
+    </qresource>
+</RCC>

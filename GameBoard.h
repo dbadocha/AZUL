@@ -2,32 +2,31 @@
 
 #include <QWidget>
 #include <QVector>
-#include <QGridLayout>
-#include <QPainter>
+
+#include <QGraphicsView>
+#include <QWidget>
+#include <QGraphicsScene>
 
 #include "ui_GameBoard.h"
 #include "TilesManager.h"
 #include "TilesWorkshop.h"
 
-class GameBoard : public QWidget
+class GameBoard : public QGraphicsView
 {
 	Q_OBJECT
 
 private:
-	Ui::GameBoard ui;
-	QWidget *m_parent = nullptr;
-	QGridLayout *layout = nullptr;
-	//Tiles *GameTiles = nullptr;
 	QVector<TilesWorkshop*> GameWorkshops;
 	QVector<TilesWorkshop*>::iterator GameWorkshopsIterator;
+	QGraphicsScene * scene = NULL;
 	int WorkshopsAmount = 0;
 	void addLayout();
 	
 public:
-	explicit GameBoard(QWidget *parent = nullptr);
+	GameBoard(QWidget *parent = 0);
 	~GameBoard();
+
 	void CreateNewGame(int);
 	void FillWorkshops();
 	TilesWorkshop *CreateWorkshop();
-	void GameBoard::paintEvent(QPaintEvent *);
 };

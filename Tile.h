@@ -1,23 +1,33 @@
 #pragma once
 
-#include <QWidget>
-#include <QPainter>
+#include <QMouseEvent>
+#include <QDrag>
+#include <QMimeData>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsItem>
+#include <QGraphicsScene>
 
 #include "Enum.h"
 #include "ui_Tile.h"
 
-class Tile : public QWidget
+class Tile : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 
 public:
-	Tile(TileColor color, QWidget *parent = nullptr);
+	Tile(TileColor color, QGraphicsItem *parent = 0);
 	~Tile();
 	void changeColor(TileColor color);
+	void resize(QSize newSize);
+	TileColor getColor();
+
+protected:
+	void mousePressEvent(QGraphicsSceneMouseEvent * event);
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
+	void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 
 private:
-	QWidget *m_parent = nullptr;
-	Ui::Tile ui;
-	void paintEvent(QPaintEvent *);
 	TileColor m_color;
+	void loadPixmap();
+	void changeCursor(TileColor newColor);
 };

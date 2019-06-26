@@ -63,7 +63,7 @@ void TilesWorkshop::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
 }
 
 QT_INIT_METAOBJECT const QMetaObject TilesWorkshop::staticMetaObject = { {
-    &QWidget::staticMetaObject,
+    &QObject::staticMetaObject,
     qt_meta_stringdata_TilesWorkshop.data,
     qt_meta_data_TilesWorkshop,
     qt_static_metacall,
@@ -82,12 +82,14 @@ void *TilesWorkshop::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_TilesWorkshop.stringdata0))
         return static_cast<void*>(this);
-    return QWidget::qt_metacast(_clname);
+    if (!strcmp(_clname, "QGraphicsPixmapItem"))
+        return static_cast< QGraphicsPixmapItem*>(this);
+    return QObject::qt_metacast(_clname);
 }
 
 int TilesWorkshop::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QObject::qt_metacall(_c, _id, _a);
     return _id;
 }
 QT_WARNING_POP

@@ -1,15 +1,22 @@
 #include "TilesWorkshop.h"
 
-TilesWorkshop::TilesWorkshop(QWidget *parent) : QWidget(parent)
+TilesWorkshop::TilesWorkshop(QGraphicsItem *parent)
+	: QGraphicsPixmapItem(parent)
 {
-	this->setFixedSize(parent->size()/5);
-	ui.setupUi(this);
-	this->initTiles();
-	this->addLayout();
+	this->loadPixmap();
 }
 
 TilesWorkshop::~TilesWorkshop()
 {
+	for (int i = 0, j = 0; i < 4; ++i) {
+		delete WorkshopTiles[i];
+		WorkshopTiles[i] = NULL;
+	}
+}
+
+void TilesWorkshop::addTiles() {
+	this->initTiles();
+	this->addLayout();
 }
 
 void TilesWorkshop::initTiles() {
@@ -19,17 +26,30 @@ void TilesWorkshop::initTiles() {
 }
 
 void TilesWorkshop::addLayout() {
-	int spacing = (this->width() / 10);
-	int offset = (this->width() - spacing - 2* WorkshopTiles[0]->width()) / 2;
+	
+	int baseSize = (this->pixmap().width() + this->pixmap().height()) / 2;
+	int newTileSize = baseSize / 5;
+	int tileOffset = newTileSize / 2;
+
+	int spacing = (baseSize / 10);
+	int offset = (baseSize - spacing - 2 * newTileSize) / 2;
 
 	for (int i = 0, j = 0; i < 4; ++i) {
+		//temporary color
 		WorkshopTiles[i] = new Tile(TileColor::RED, this);
-		int PosX = (offset + (spacing + WorkshopTiles[0]->width()) * (i % 2));
-		int PosY = (offset + (spacing + WorkshopTiles[0]->width()) * (j % 2));
-		WorkshopTiles[i]->move(PosX, PosY);
+
+		int PosX = (offset + (spacing + newTileSize) * (i % 2));
+		int PosY = (offset + (spacing + newTileSize) * (j % 2));
+
+		WorkshopTiles[i]->setPos(PosX, PosY);
 
 		if (i % 2)
 			j++;
+
+		int newSize = (this->pixmap().width() + this->pixmap().height()) / (2 * 5);
+		WorkshopTiles[i]->resize(QSize(newSize, newSize));
+
+		this->scene()->addItem(WorkshopTiles[i]);
 	}
 	this->update();
 }
@@ -41,21 +61,22 @@ void TilesWorkshop::addLayout() {
 //	}
 //}
 
-//void TilesWorkshop::ClearWorkshop()
-//{
-//	for (int i = 0; i < 4; ++i) {
-//		WorkshopTiles[i] = TileColor::NONE;
-//	}
-//}
-
-void TilesWorkshop::paintEvent(QPaintEvent *)
+void TilesWorkshop::ClearWorkshop()
 {
-	QPixmap _pixmapBg(":/Resources/Resources/Workshop.jpg");
-	QPainter paint(this);
-	auto winSize = size();
-	auto pixmapRatio = (float)_pixmapBg.width() / _pixmapBg.height();
-	auto windowRatio = (float)winSize.width() / winSize.height();
-	auto newWidth = (float)(winSize.width() / windowRatio);
-	auto newHeight = (float)(winSize.height());
-	paint.drawPixmap(0, 0, newWidth, newHeight, _pixmapBg);
+	for (int i = 0; i < 4; ++i) {
+		WorkshopTiles[i]->changeColor(TileColor::NONE);
+	}
+}
+
+void TilesWorkshop::loadPixmap()
+{
+	QPixmap tmp(":/images/Resources/Images/Workshop.jpg");
+	setPixmap(tmp);
+}
+
+void TilesWorkshop::resize(QSize newSize)
+{
+	this->setPixmap(this->pixmap().scaled(newSize));
+
+	this->update();
 }

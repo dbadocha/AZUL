@@ -2,28 +2,32 @@
 
 #include <QWidget>
 #include <QGridLayout>
-#include <QPainter>
+
+#include <QGraphicsPixmapItem>
+#include <QGraphicsItem>
+#include <QGraphicsScene>
 
 #include "Tile.h"
-#include "ui_TilesWorkshop.h"
+
 //#include "Tiles.h"
 //#include "Enum.h"
 
-class TilesWorkshop : public QWidget
+class TilesWorkshop : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 
 public:
-	explicit TilesWorkshop(QWidget *parent = nullptr);
+	TilesWorkshop(QGraphicsItem *parent = 0);
 	~TilesWorkshop();
 	//void Refill(Tiles *GameTiles);
 	void ClearWorkshop();
-	void paintEvent(QPaintEvent *);
+	void resize(QSize newSize);
+	void addTiles();
 
 private:
-	Ui::TilesWorkshop ui;
 	Tile *WorkshopTiles[4];
 	void addLayout();
 	void initTiles();
+	void loadPixmap();
 };
 

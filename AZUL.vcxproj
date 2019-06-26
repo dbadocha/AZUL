@@ -134,7 +134,7 @@
     <QtUic Include="TilesWorkshop.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="MainWindow.qrc" />
+    <QtRcc Include="res.qrc" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MainMenu.h">

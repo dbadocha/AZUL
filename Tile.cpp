@@ -1,13 +1,12 @@
 #include "Tile.h"
 
 
-Tile::Tile(TileColor color, QWidget *parent)
-	: QWidget(parent)
+Tile::Tile(TileColor color, QGraphicsItem *parent)
+	: QGraphicsPixmapItem(parent)
 {
-	ui.setupUi(this);
-	m_parent = parent;
 	m_color = color;
-	this->setFixedSize(parent->size() / 5);
+	changeCursor(color);
+	loadPixmap();
 }
 
 Tile::~Tile()
@@ -16,34 +15,77 @@ Tile::~Tile()
 
 void Tile::changeColor(TileColor color) {
 	this->m_color = color;
+	changeCursor(color);
+	this->loadPixmap();
 	this->update();
 }
 
-void Tile::paintEvent(QPaintEvent *)
+
+
+void Tile::loadPixmap()
 {
-	QPixmap _pixmapBg;
+	QPixmap tmp;
 	switch (m_color) {
 	case TileColor::BLUE:
-		_pixmapBg.load(":/Resources/Resources/TileBlue.jpg");
+		tmp.load(":/images/Resources/Images/TileBlue.jpg");
 		break;
 	case TileColor::BLACK:
-		_pixmapBg.load(":/Resources/Resources/TileBlack.jpg");
+		tmp.load(":/images/Resources/Images/TileBlack.jpg");
 		break;
 	case TileColor::WHITE:
-		_pixmapBg.load(":/Resources/Resources/TileWhite.jpg");
+		tmp.load(":/images/Resources/Images/TileWhite.jpg");
 		break;
 	case TileColor::RED:
-		_pixmapBg.load(":/Resources/Resources/TileRed.jpg");
+		tmp.load(":/images/Resources/Images/TileRed.jpg");
 		break;
 	case TileColor::YELLOW:
-		_pixmapBg.load(":/Resources/Resources/TileYellow.jpg");
+		tmp.load(":/images/Resources/Images/TileYellow.jpg");
 		break;
 	}
-	QPainter paint(this);
-	auto winSize = this->size();
-	auto pixmapRatio = (float)_pixmapBg.width() / _pixmapBg.height();
-	auto windowRatio = (float)winSize.width() / winSize.height();
-	auto newWidth = (float)(winSize.width() / windowRatio);
-	auto newHeight = (float)(winSize.height());
-	paint.drawPixmap(0, 0, newWidth, newHeight, _pixmapBg);
+
+	setPixmap(tmp);
+}
+
+void Tile::changeCursor(TileColor newColor) {
+	if (newColor == TileColor::NONE) {
+		this->setCursor(Qt::ArrowCursor);
+		setAcceptedMouseButtons(Qt::NoButton);
+	}
+	else {
+		this->setCursor(Qt::OpenHandCursor);
+		setAcceptedMouseButtons(Qt::LeftButton);
+	}
+}
+
+void Tile::resize(QSize newSize)
+{
+	this->setPixmap(this->pixmap().scaled(newSize));
+	this->update();
+}
+
+void Tile::mousePressEvent(QGraphicsSceneMouseEvent * event)
+{
+	this->setCursor(Qt::ClosedHandCursor);
+}
+
+void Tile::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
+{
+	changeCursor(m_color);
+}
+
+void Tile::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
+{
+
+	QDrag *drag = new QDrag(this);
+	QMimeData *mimeData = new QMimeData;
+	drag->setMimeData(mimeData);
+	drag->setPixmap(this->pixmap());
+	drag->setHotSpot(QPoint(15, 20));
+	changeCursor(m_color);
+	drag->exec();
+}
+
+TileColor Tile::getColor()
+{
+	return m_color;
 }
