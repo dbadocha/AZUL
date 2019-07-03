@@ -81,8 +81,8 @@ void Tile::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 	drag->setMimeData(mimeData);
 	drag->setPixmap(this->pixmap());
 	drag->setHotSpot(QPoint(15, 20));
-	changeCursor(m_color);
 	drag->exec();
+	changeCursor(m_color);
 }
 
 TileColor Tile::getColor()

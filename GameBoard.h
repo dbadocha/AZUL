@@ -1,15 +1,16 @@
 #pragma once
 
-#include <QWidget>
 #include <QVector>
 
 #include <QGraphicsView>
 #include <QWidget>
 #include <QGraphicsScene>
 
-#include "ui_GameBoard.h"
 #include "TilesManager.h"
 #include "TilesWorkshop.h"
+#include "TilesPile.h"
+
+#define M_PI 3.14159265358979323846
 
 class GameBoard : public QGraphicsView
 {
@@ -18,15 +19,16 @@ class GameBoard : public QGraphicsView
 private:
 	QVector<TilesWorkshop*> GameWorkshops;
 	QVector<TilesWorkshop*>::iterator GameWorkshopsIterator;
+
+	TilesPile * pile = NULL;
 	QGraphicsScene * scene = NULL;
-	int WorkshopsAmount = 0;
+	int workshopsAmount = 0;
+	const int resizeFactor = 5;
 	void addLayout();
+	void CreateNewGame(int);
 	
 public:
 	GameBoard(QWidget *parent = 0);
 	~GameBoard();
-
-	void CreateNewGame(int);
 	void FillWorkshops();
-	TilesWorkshop *CreateWorkshop();
 };

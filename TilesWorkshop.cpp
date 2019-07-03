@@ -48,8 +48,6 @@ void TilesWorkshop::addLayout() {
 
 		int newSize = (this->pixmap().width() + this->pixmap().height()) / (2 * 5);
 		WorkshopTiles[i]->resize(QSize(newSize, newSize));
-
-		this->scene()->addItem(WorkshopTiles[i]);
 	}
 	this->update();
 }

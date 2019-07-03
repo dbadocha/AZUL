@@ -9,9 +9,6 @@
 
 #include "Tile.h"
 
-//#include "Tiles.h"
-//#include "Enum.h"
-
 class TilesWorkshop : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
@@ -31,3 +28,4 @@ private:
 	void loadPixmap();
 };
 
+//QGraphicsEllipseItem

@@ -32,33 +32,43 @@ GameBoard::~GameBoard()
 
 void GameBoard::CreateNewGame(int PlayersCount)
 {
-	WorkshopsAmount = 2 * PlayersCount + 1;
-	for (int i = 0; i <= WorkshopsAmount; ++i)
+	workshopsAmount = 2 * PlayersCount + 1;
+	for (int i = 0; i <= workshopsAmount; ++i)
 	{
-		GameWorkshops.push_back(CreateWorkshop());
+		TilesWorkshop * tmp = new TilesWorkshop();
+		GameWorkshops.push_back(tmp);
+		scene->addItem(tmp);
 	}
+
+	pile = new TilesPile();
+	scene->addItem(pile);
+
 	this->addLayout();
 }
 
 void GameBoard::addLayout() {
-	int PosX = 0, PosY = 0;
-	int r = this->height() / 5;
-	float pi = 3.1415926535;
+	int posX = 0, posY = 0;
+	int r = this->height() / 4;
 	float a = 0;
+	int newWorkshopSize = (this->width() + this->height()) / (2 * resizeFactor);
+	int newPileSize = 2 * r - newWorkshopSize;
+	int offsetX = this->width() / 2;
+	int offsetY = this->height() / 3;
 
 	for (GameWorkshopsIterator = GameWorkshops.begin(); GameWorkshopsIterator != GameWorkshops.end(); ++GameWorkshopsIterator)
 	{
-		PosX = r * sin(a) + (this->width() - this->width() / 5) / 2;
-		PosY = r * cos(a) + (this->width() - this->width() / 5) / 2.5;
-		a += 2 * pi / WorkshopsAmount;
-		(*GameWorkshopsIterator)->setPos(PosX, PosY);
-
-		int newSize = (this->width() + this->height()) / (2 * 5);
-		(*GameWorkshopsIterator)->resize(QSize(newSize, newSize));
-		scene->addItem(*GameWorkshopsIterator);
-
+		posX = r * sin(a) + offsetX - newWorkshopSize / 2;
+		posY = r * cos(a) + offsetY - newWorkshopSize / 2;
+		a += 2 * M_PI / workshopsAmount;
+		(*GameWorkshopsIterator)->setPos(posX, posY);
+		(*GameWorkshopsIterator)->resize(QSize(newWorkshopSize, newWorkshopSize));
 		(*GameWorkshopsIterator)->addTiles();
 	}
+
+	posX = offsetX - newPileSize / 2;
+	posY = offsetY - newPileSize / 2;
+	pile->setPos(posX, posY);
+	pile->resize(QSize(newPileSize, newPileSize));
 }
 
 
@@ -66,11 +76,6 @@ void GameBoard::FillWorkshops()
 {
 	//for (GameWorkshopsIterator = GameWorkshops.begin(); GameWorkshopsIterator != GameWorkshops.end(); ++GameWorkshopsIterator) {
 		//(*GameWorkshopsIterator)->Refill(GameTiles);
-}
-
-TilesWorkshop *GameBoard::CreateWorkshop() {
-	TilesWorkshop *workshop = new TilesWorkshop();
-	return workshop;
 }
 
 //void GameBoard::paintEvent(QPaintEvent *)
