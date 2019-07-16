@@ -38,10 +38,10 @@ void TilesWorkshop::addLayout() {
 		//temporary color
 		WorkshopTiles[i] = new Tile(TileColor::RED, this);
 
-		int PosX = (offset + (spacing + newTileSize) * (i % 2));
-		int PosY = (offset + (spacing + newTileSize) * (j % 2));
+		int posX = (offset + (spacing + newTileSize) * (i % 2));
+		int posY = (offset + (spacing + newTileSize) * (j % 2));
 
-		WorkshopTiles[i]->setPos(PosX, PosY);
+		WorkshopTiles[i]->setPos(posX, posY);
 
 		if (i % 2)
 			j++;
@@ -69,12 +69,11 @@ void TilesWorkshop::ClearWorkshop()
 void TilesWorkshop::loadPixmap()
 {
 	QPixmap tmp(":/images/Resources/Images/Workshop.jpg");
-	setPixmap(tmp);
+	this->setPixmap(tmp);
 }
 
 void TilesWorkshop::resize(QSize newSize)
 {
 	this->setPixmap(this->pixmap().scaled(newSize));
-
 	this->update();
 }

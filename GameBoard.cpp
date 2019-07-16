@@ -5,14 +5,14 @@ GameBoard::GameBoard(QWidget *parent) : QGraphicsView(parent)
 	this->resize(parent->size());
 
 	scene = new QGraphicsScene(this);
-	scene->setSceneRect(0, 0, 800, 600);
+	scene->setSceneRect(0, 0, parent->size().width(), parent->size().height());
 	setBackgroundBrush(QBrush(QImage(":/images/Resources/Images/Table.jpg")));
 	setScene(scene);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	setFixedSize(800, 600);
+	setFixedSize(parent->size().width(), parent->size().height());
 
-	this->CreateNewGame(2);
+	this->createNewGame(2);
 	this->show();
 }
 
@@ -21,7 +21,7 @@ GameBoard::~GameBoard()
 	//delete GameTiles;
 	//GameTiles = NULL;
 
-	for (TilesWorkshop* i : GameWorkshops){
+	for (TilesWorkshop* i : gameWorkshops){
 		delete i;
 		i = NULL;
 	}
@@ -30,18 +30,25 @@ GameBoard::~GameBoard()
 	scene = NULL;
 }
 
-void GameBoard::CreateNewGame(int PlayersCount)
+void GameBoard::createNewGame(int PlayersCount)
 {
 	workshopsAmount = 2 * PlayersCount + 1;
 	for (int i = 0; i <= workshopsAmount; ++i)
 	{
 		TilesWorkshop * tmp = new TilesWorkshop();
-		GameWorkshops.push_back(tmp);
+		gameWorkshops.push_back(tmp);
+		scene->addItem(tmp);
+	}
+
+	for (int i = 0; i < PlayersCount; ++i) {
+		PlayersBoard * tmp = new PlayersBoard();
+		playerBoard.push_back(tmp);
 		scene->addItem(tmp);
 	}
 
 	pile = new TilesPile();
 	scene->addItem(pile);
+
 
 	this->addLayout();
 }
@@ -55,14 +62,22 @@ void GameBoard::addLayout() {
 	int offsetX = this->width() / 2;
 	int offsetY = this->height() / 3;
 
-	for (GameWorkshopsIterator = GameWorkshops.begin(); GameWorkshopsIterator != GameWorkshops.end(); ++GameWorkshopsIterator)
+	for (gameWorkshopsIterator = gameWorkshops.begin(); gameWorkshopsIterator != gameWorkshops.end(); ++gameWorkshopsIterator)
 	{
 		posX = r * sin(a) + offsetX - newWorkshopSize / 2;
 		posY = r * cos(a) + offsetY - newWorkshopSize / 2;
 		a += 2 * M_PI / workshopsAmount;
-		(*GameWorkshopsIterator)->setPos(posX, posY);
-		(*GameWorkshopsIterator)->resize(QSize(newWorkshopSize, newWorkshopSize));
-		(*GameWorkshopsIterator)->addTiles();
+		(*gameWorkshopsIterator)->setPos(posX, posY);
+		(*gameWorkshopsIterator)->resize(QSize(newWorkshopSize, newWorkshopSize));
+		(*gameWorkshopsIterator)->addTiles();
+	}
+
+	for (playerBoardIterator = playerBoard.begin(); playerBoardIterator != playerBoard.end(); ++playerBoardIterator)
+	{
+
+		int newPlayerBoardSize = (this->width() + this->height()) / 4;
+		//(*playerBoardIterator)->setPos(posX, posY);
+		(*playerBoardIterator)->resize(QSize(newPlayerBoardSize, newPlayerBoardSize));
 	}
 
 	posX = offsetX - newPileSize / 2;

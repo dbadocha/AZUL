@@ -1,8 +1,5 @@
 #pragma once
 
-#include <QWidget>
-#include <QGridLayout>
-
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
@@ -13,6 +10,12 @@ class TilesWorkshop : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 
+private:
+	Tile *WorkshopTiles[4];
+	void addLayout();
+	void initTiles();
+	void loadPixmap();
+
 public:
 	TilesWorkshop(QGraphicsItem *parent = 0);
 	~TilesWorkshop();
@@ -20,12 +23,6 @@ public:
 	void ClearWorkshop();
 	void resize(QSize newSize);
 	void addTiles();
-
-private:
-	Tile *WorkshopTiles[4];
-	void addLayout();
-	void initTiles();
-	void loadPixmap();
 };
 
 //QGraphicsEllipseItem

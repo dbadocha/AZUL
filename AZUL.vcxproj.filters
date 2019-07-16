@@ -54,6 +54,9 @@
     <ClCompile Include="TilesPile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlayersBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MainWindow.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="TilesPile.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayersBoard.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
