@@ -5,8 +5,8 @@ TileSlot::TileSlot(QObject *parent)
 {
 }
 
-TileSlot::TileSlot(QSize size, QObject *parent)
-	: QObject(parent), QGraphicsRectItem(0, 0, size.width(), size.height())
+TileSlot::TileSlot(QPoint point, QSize size, QObject *parent)
+	: QObject(parent), QGraphicsRectItem(point.x(), point.y(), size.width(), size.height())
 {
 
 }
@@ -34,20 +34,20 @@ void TileSlot::resizeTile(QSize size)
 		slotTile->resize(size);
 }
 
-void TileSlot::highlight(highlightColor color)
+void TileSlot::highlight(slotHighlightColor color)
 {
 	switch (color)
 	{
-	case highlightColor::OFF:
+	case slotHighlightColor::OFF:
 		this->setBrush(QColor(0, 0, 0, 0));
 		break;
-	case highlightColor::GREEN:
+	case slotHighlightColor::GREEN:
 		this->setBrush(QColor(0, 255, 0, 255));
 		break;
-	case highlightColor::BLUE:
+	case slotHighlightColor::BLUE:
 		this->setBrush(QColor(0, 0, 255, 255));
 		break;
-	case highlightColor::RED:
+	case slotHighlightColor::RED:
 		this->setBrush(QColor(255, 0, 0, 255));
 	}
 }

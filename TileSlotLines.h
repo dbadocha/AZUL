@@ -10,14 +10,14 @@ class TileSlotLines : public QObject, public QGraphicsRectItem
 	Q_OBJECT
 private:
 	QVector <TileSlot*> slotLine;
-	QVector <TileSlot*>::iterator slotLineIterator;
-	void initializeSlots();
-	void createSlots(int amount, QSize tileSize);
-	void layoutSlots(int amount, QSize tileSize);
-	
+	int tilesAmount = 0;
+	void initializeSlots(int amount, QSize tileSize, int spacing);	
 
 public:
 	TileSlotLines(QObject *parent);
 	TileSlotLines(int amount, QSize size, int spacing, QObject *parent);
 	~TileSlotLines();
+
+	void highlight(int amount, slotHighlightColor color);
+	void addTiles(QVector <Tile*> * slotLine);
 };

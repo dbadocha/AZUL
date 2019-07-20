@@ -6,7 +6,7 @@
 #include "Tile.h"
 #include "TilesManager.h"
 
-enum class highlightColor
+enum class slotHighlightColor
 {OFF, GREEN, BLUE, RED};
 
 class TileSlot : public QObject, public QGraphicsRectItem
@@ -20,11 +20,11 @@ private:
 
 public:
 	TileSlot(QObject *parent);
-	TileSlot(QSize size, QObject *parent);
+	TileSlot(QPoint point, QSize size, QObject *parent);
 	~TileSlot();
 
 	void resize(QSize size);
-	void highlight(highlightColor color);
+	void highlight(slotHighlightColor color);
 	void addTile(Tile* tileToken);
 	Tile* returnTile();
 };
