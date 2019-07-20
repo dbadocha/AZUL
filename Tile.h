@@ -25,6 +25,8 @@ protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent * event);
 	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
 	void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+	void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
+	//QMimeData * mimeData(const QModelIndexList &indexes);
 
 private:
 	TileColor m_color;

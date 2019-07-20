@@ -89,3 +89,15 @@ TileColor Tile::getColor()
 {
 	return m_color;
 }
+
+//QMimeData * Tile::mimeData(const QModelIndexList &indexes) {
+//
+//}
+
+
+void Tile::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
+	if (this->m_color != TileColor::NONE) {
+		setAcceptDrops(true);
+		this->changeColor(TileColor::BLACK);
+	}
+}

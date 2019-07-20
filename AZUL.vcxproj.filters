@@ -28,6 +28,12 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Header Files\Tile">
+      <UniqueIdentifier>{cc5b805c-e9d2-4016-9739-497da0ac5f56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tile">
+      <UniqueIdentifier>{23b43801-2f2d-4436-a264-849b8f4140de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,16 +51,22 @@
     <ClCompile Include="TilesWorkshop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TilesManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TilesPile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayersBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TilesManager.cpp">
+      <Filter>Source Files\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSlot.cpp">
+      <Filter>Source Files\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSlotLines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,16 +83,22 @@
     <QtMoc Include="TilesWorkshop.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="Tile.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="TilesManager.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="TilesPile.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="PlayersBoard.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Tile.h">
+      <Filter>Header Files\Tile</Filter>
+    </QtMoc>
+    <QtMoc Include="TileSlot.h">
+      <Filter>Header Files\Tile</Filter>
+    </QtMoc>
+    <QtMoc Include="TilesManager.h">
+      <Filter>Header Files\Tile</Filter>
+    </QtMoc>
+    <QtMoc Include="TileSlotLines.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
