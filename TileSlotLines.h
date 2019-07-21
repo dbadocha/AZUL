@@ -18,6 +18,7 @@ public:
 	TileSlotLines(int amount, QSize size, int spacing, QObject *parent);
 	~TileSlotLines();
 
+	void addToScene(QGraphicsScene * scene);
 	void highlight(int amount, slotHighlightColor color);
 	void addTiles(QVector <Tile*> * slotLine);
 };

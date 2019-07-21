@@ -12,7 +12,11 @@ GameBoard::GameBoard(QWidget *parent) : QGraphicsView(parent)
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setFixedSize(parent->size().width(), parent->size().height());
 
-	this->createNewGame(2);
+
+	TileSlotLines * ss = new TileSlotLines(5, QSize(100, 100), 5, this);
+	ss->addToScene(scene);
+
+	//this->createNewGame(2);
 	this->show();
 }
 

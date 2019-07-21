@@ -34,6 +34,12 @@
     <Filter Include="Source Files\Tile">
       <UniqueIdentifier>{23b43801-2f2d-4436-a264-849b8f4140de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Player%27s Board">
+      <UniqueIdentifier>{9a11179d-83c9-48da-bddd-6799bc05ff5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player%27s Board">
+      <UniqueIdentifier>{4294aa46-22db-41fb-985e-e019553293f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,9 +60,6 @@
     <ClCompile Include="TilesPile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayersBoard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TilesManager.cpp">
       <Filter>Source Files\Tile</Filter>
     </ClCompile>
@@ -68,6 +71,18 @@
     </ClCompile>
     <ClCompile Include="TileSlotLines.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayersBoard.cpp">
+      <Filter>Source Files\Player%27s Board</Filter>
+    </ClCompile>
+    <ClCompile Include="PatternLines.cpp">
+      <Filter>Source Files\Player%27s Board</Filter>
+    </ClCompile>
+    <ClCompile Include="WallLines.cpp">
+      <Filter>Source Files\Player%27s Board</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorLine.cpp">
+      <Filter>Source Files\Player%27s Board</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +101,6 @@
     <QtMoc Include="TilesPile.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="PlayersBoard.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="Tile.h">
       <Filter>Header Files\Tile</Filter>
     </QtMoc>
@@ -100,6 +112,18 @@
     </QtMoc>
     <QtMoc Include="TileSlotLines.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayersBoard.h">
+      <Filter>Header Files\Player%27s Board</Filter>
+    </QtMoc>
+    <QtMoc Include="PatternLines.h">
+      <Filter>Header Files\Player%27s Board</Filter>
+    </QtMoc>
+    <QtMoc Include="WallLines.h">
+      <Filter>Header Files\Player%27s Board</Filter>
+    </QtMoc>
+    <QtMoc Include="FloorLine.h">
+      <Filter>Header Files\Player%27s Board</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

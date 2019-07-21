@@ -10,14 +10,22 @@ TileSlotLines::TileSlotLines(int amount, QSize tileSize, int spacing, QObject *p
 {
 	int width = amount * tileSize.width() + (amount - 1) * spacing;
 	int height = tileSize.height();
-
 	this->setRect(0, 0, width, height);
-
 	initializeSlots(amount, tileSize, spacing);
 }
 
 TileSlotLines::~TileSlotLines()
 {
+}
+
+void TileSlotLines::addToScene(QGraphicsScene * scene)
+{
+	scene->addItem(this);
+
+	for (QVector<TileSlot*>::iterator slotlineIt = slotLine.begin(); slotlineIt != slotLine.end(); ++slotlineIt)
+	{
+		scene->addItem(*slotlineIt);
+	}
 }
 
 void TileSlotLines::highlight(int amount, slotHighlightColor color)
@@ -53,6 +61,7 @@ void TileSlotLines::initializeSlots(int amount, QSize tileSize, int spacing)
 		x = i * (tileSize.width() + spacing);
 		tilePosition.setX(x);
 		slotLine.push_back(new TileSlot(tilePosition, tileSize, this));
+		slotLine[i]->highlight(slotHighlightColor::GREEN);
 	}
 }
 
