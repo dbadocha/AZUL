@@ -19,12 +19,12 @@ private:
 	void resizeTile(QSize size);
 
 public:
-	TileSlot(QObject *parent);
-	TileSlot(QPoint point, QSize size, QObject *parent);
+	TileSlot(QPoint point, QSize size, QGraphicsRectItem *parent);
 	~TileSlot();
 
 	void resize(QSize size);
 	void highlight(slotHighlightColor color);
 	void addTile(Tile* tileToken);
+	int isEmpty();
 	Tile* returnTile();
 };

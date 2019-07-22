@@ -9,16 +9,16 @@ class TileSlotLines : public QObject, public QGraphicsRectItem
 {
 	Q_OBJECT
 private:
-	QVector <TileSlot*> slotLine;
+	QVector <TileSlot*> tileSlotLine;
 	int tilesAmount = 0;
-	void initializeSlots(int amount, QSize tileSize, int spacing);	
+	void initializeSlots(int amount, QSize tileSize, double spacing);
 
 public:
-	TileSlotLines(QObject *parent);
-	TileSlotLines(int amount, QSize size, int spacing, QObject *parent);
+	TileSlotLines(int amount, QSize size, double spacing, QGraphicsItem *parent = 0);
 	~TileSlotLines();
 
-	void addToScene(QGraphicsScene * scene);
 	void highlight(int amount, slotHighlightColor color);
-	void addTiles(QVector <Tile*> * slotLine);
+	void addTiles(QVector <Tile*> * inputTiles);
+	void emptySlots();
+	int size();
 };

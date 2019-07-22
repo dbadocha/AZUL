@@ -1,14 +1,8 @@
 #include "TileSlot.h"
 
-TileSlot::TileSlot(QObject *parent)
-	: QObject(parent)
+TileSlot::TileSlot(QPoint point, QSize size, QGraphicsRectItem *parent)
+	: QGraphicsRectItem(point.x(), point.y(), size.width(), size.height(), parent)
 {
-}
-
-TileSlot::TileSlot(QPoint point, QSize size, QObject *parent)
-	: QObject(parent), QGraphicsRectItem(point.x(), point.y(), size.width(), size.height())
-{
-
 }
 
 TileSlot::~TileSlot()
@@ -42,13 +36,13 @@ void TileSlot::highlight(slotHighlightColor color)
 		this->setBrush(QColor(0, 0, 0, 0));
 		break;
 	case slotHighlightColor::GREEN:
-		this->setBrush(QColor(0, 255, 0, 255));
+		this->setBrush(QColor(0, 255, 0, 100));
 		break;
 	case slotHighlightColor::BLUE:
-		this->setBrush(QColor(0, 0, 255, 255));
+		this->setBrush(QColor(0, 0, 255, 100));
 		break;
 	case slotHighlightColor::RED:
-		this->setBrush(QColor(255, 0, 0, 255));
+		this->setBrush(QColor(255, 0, 0, 100));
 	}
 }
 
@@ -58,6 +52,14 @@ void TileSlot::addTile(Tile* tileToken)
 	int width = this->rect().size().width();
 	int height = this->rect().size().height();
 	resizeTile(QSize(width, height));
+}
+
+int TileSlot::isEmpty()
+{
+	if (slotTile == NULL)
+		return 1;
+	else
+		return 0;
 }
 
 Tile* TileSlot::returnTile()

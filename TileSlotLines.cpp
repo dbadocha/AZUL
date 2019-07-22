@@ -1,57 +1,51 @@
 #include "TileSlotLines.h"
 
-TileSlotLines::TileSlotLines(QObject *parent)
-	: QObject(parent)
-{
-}
-
-TileSlotLines::TileSlotLines(int amount, QSize tileSize, int spacing, QObject *parent)
-	: QObject(parent)
+TileSlotLines::TileSlotLines(int amount, QSize tileSize, double spacing, QGraphicsItem *parent)
+	: QGraphicsRectItem(parent)
 {
 	int width = amount * tileSize.width() + (amount - 1) * spacing;
 	int height = tileSize.height();
 	this->setRect(0, 0, width, height);
-	initializeSlots(amount, tileSize, spacing);
+	this->initializeSlots(amount, tileSize, spacing);
 }
 
 TileSlotLines::~TileSlotLines()
 {
 }
 
-void TileSlotLines::addToScene(QGraphicsScene * scene)
-{
-	scene->addItem(this);
-
-	for (QVector<TileSlot*>::iterator slotlineIt = slotLine.begin(); slotlineIt != slotLine.end(); ++slotlineIt)
-	{
-		scene->addItem(*slotlineIt);
-	}
-}
-
 void TileSlotLines::highlight(int amount, slotHighlightColor color)
 {
-	int lineSize = slotLine.size();
+	int lineSize = tileSlotLine.size();
 	for (int i = 0; i < amount && i < lineSize; ++i)
 	{
-		slotLine[i]->highlight(color);
+		tileSlotLine[i]->highlight(color);
 	}
 }
 
 void TileSlotLines::addTiles(QVector<Tile*>* inputTiles)
 {
-	//////////////////////////////////////
-	//in progress
-	/////////////////////////////////
 	Tile * tileToken = NULL;
 
-	for (int i = inputTiles->size(), j = 0; i != 0; --i, ++j)
+	for (int i = tilesAmount; i < tileSlotLine.size(); ++i)
 	{
-		tileToken = inputTiles->at(i);
-		slotLine[j]->addTile(tileToken);
+		if (tileSlotLine[i]->isEmpty())
+		{
+			tileToken = inputTiles->at(i);
+			tileSlotLine[i]->addTile(tileToken);
+			++tilesAmount;
+		}
 	}
 }
 
-void TileSlotLines::initializeSlots(int amount, QSize tileSize, int spacing)
+void TileSlotLines::emptySlots()
+{
+	for (int i = tileSlotLine.size() - 1; i >= 0; --i) {
+		delete tileSlotLine[i];
+		tileSlotLine[i] = NULL;
+	}
+}
+
+void TileSlotLines::initializeSlots(int amount, QSize tileSize, double spacing)
 {
 	QPoint tilePosition;
 	int x = 0;
@@ -60,8 +54,12 @@ void TileSlotLines::initializeSlots(int amount, QSize tileSize, int spacing)
 	{
 		x = i * (tileSize.width() + spacing);
 		tilePosition.setX(x);
-		slotLine.push_back(new TileSlot(tilePosition, tileSize, this));
-		slotLine[i]->highlight(slotHighlightColor::GREEN);
+		tileSlotLine.push_back(new TileSlot(tilePosition, tileSize, this));
+		tileSlotLine[i]->highlight(slotHighlightColor::GREEN);
 	}
 }
 
+int TileSlotLines::size()
+{
+	return tileSlotLine.size();
+}
