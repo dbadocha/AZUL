@@ -1,8 +1,9 @@
 #include "TileSlotLines.h"
 
-TileSlotLines::TileSlotLines(int amount, QSize tileSize, double spacing, QGraphicsItem *parent)
+TileSlotLines::TileSlotLines(int slotLineID, int amount, QSize tileSize, double spacing, QGraphicsItem *parent)
 	: QGraphicsRectItem(parent)
 {
+	setAcceptDrops(true);
 	int width = amount * tileSize.width() + (amount - 1) * spacing;
 	int height = tileSize.height();
 	this->setRect(0, 0, width, height);
@@ -62,4 +63,41 @@ void TileSlotLines::initializeSlots(int amount, QSize tileSize, double spacing)
 int TileSlotLines::size()
 {
 	return tileSlotLine.size();
+}
+
+void TileSlotLines::dragEnterEvent(QGraphicsSceneDragDropEvent *event)
+{
+	this->highlight(7, slotHighlightColor::BLUE);
+}
+
+void TileSlotLines::dragLeaveEvent(QGraphicsSceneDragDropEvent *event)
+{
+	this->highlight(7, slotHighlightColor::OFF);
+}
+
+void TileSlotLines::dropEvent(QGraphicsSceneDragDropEvent *event)
+{
+
+	//if (event->mimeData()->hasFormat(PiecesList::puzzleMimeType())) {
+	//	QByteArray pieceData = event->mimeData()->data(PiecesList::puzzleMimeType());
+	//	QDataStream dataStream(&pieceData, QIODevice::ReadOnly);
+	//	QPixmap pixmap;
+	//	QPoint location;
+	//	dataStream >> pixmap >> location;
+
+	//	addPiece(pixmap, location);
+
+	//	event->setDropAction(Qt::MoveAction);
+	//	event->accept();
+	//}
+	//else {
+	//	event->ignore();
+	//}
+
+	this->highlight(7, slotHighlightColor::RED);
+}
+
+int TileSlotLines::getID()
+{
+	return slotLineID;
 }

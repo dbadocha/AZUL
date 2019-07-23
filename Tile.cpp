@@ -66,6 +66,13 @@ void Tile::resize(QSize newSize)
 void Tile::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
 	this->setCursor(Qt::ClosedHandCursor);
+
+	QByteArray itemData;
+	QDataStream dataStream(&itemData, QIODevice::WriteOnly);
+	dataStream << this;
+
+	QMimeData *mimeData = new QMimeData;
+	mimeData->setData(tileMimeType(), itemData);
 }
 
 void Tile::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
@@ -75,7 +82,6 @@ void Tile::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 
 void Tile::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 {
-
 	QDrag *drag = new QDrag(this);
 	QMimeData *mimeData = new QMimeData;
 	drag->setMimeData(mimeData);

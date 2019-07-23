@@ -3,7 +3,6 @@
 TileSlot::TileSlot(QPoint point, QSize size, QGraphicsRectItem *parent)
 	: QGraphicsRectItem(point.x(), point.y(), size.width(), size.height(), parent)
 {
-	setAcceptDrops(true);
 }
 
 TileSlot::~TileSlot()
@@ -68,15 +67,4 @@ Tile* TileSlot::returnTile()
 	Tile* ret = slotTile;
 	slotTile = NULL;
 	return ret;
-}
-
-
-void TileSlot::dragEnterEvent(QGraphicsSceneDragDropEvent *event)
-{
-	this->highlight(slotHighlightColor::BLUE);
-}
-
-void TileSlot::dragLeaveEvent(QGraphicsSceneDragDropEvent *event)
-{
-	this->highlight(slotHighlightColor::OFF);
 }

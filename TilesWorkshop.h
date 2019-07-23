@@ -11,18 +11,21 @@ class TilesWorkshop : public QObject, public QGraphicsPixmapItem
 	Q_OBJECT
 
 private:
-	Tile *WorkshopTiles[4];
+	int workshopID = 0;
+	Tile *workshopTiles[4];
 	void addLayout();
 	void initTiles();
 	void loadPixmap();
 
 public:
-	TilesWorkshop(QGraphicsItem *parent = 0);
+	TilesWorkshop(int workshopID, QGraphicsItem *parent = 0);
 	~TilesWorkshop();
 	//void Refill(Tiles *GameTiles);
-	void ClearWorkshop();
+	void clearWorkshop();
 	void resize(QSize newSize);
 	void addTiles();
+	int getID();
+	int getTilesAmount(TileColor color);
 };
 
 //QGraphicsEllipseItem

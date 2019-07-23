@@ -1,16 +1,17 @@
 #include "TilesWorkshop.h"
 
-TilesWorkshop::TilesWorkshop(QGraphicsItem *parent)
+TilesWorkshop::TilesWorkshop(int workshopID, QGraphicsItem *parent)
 	: QGraphicsPixmapItem(parent)
 {
+	this->workshopID = workshopID;
 	this->loadPixmap();
 }
 
 TilesWorkshop::~TilesWorkshop()
 {
 	for (int i = 0, j = 0; i < 4; ++i) {
-		delete WorkshopTiles[i];
-		WorkshopTiles[i] = NULL;
+		delete workshopTiles[i];
+		workshopTiles[i] = NULL;
 	}
 }
 
@@ -19,9 +20,25 @@ void TilesWorkshop::addTiles() {
 	this->addLayout();
 }
 
+int TilesWorkshop::getID()
+{
+	return this->workshopID;
+}
+
+int TilesWorkshop::getTilesAmount(TileColor color)
+{
+	int colorAmount = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		if (workshopTiles[i]->getColor() == color)
+			++colorAmount;
+	}
+	return colorAmount;
+}
+
 void TilesWorkshop::initTiles() {
 	for (int i = 0, j = 0; i < 4; ++i) {
-		WorkshopTiles[i] = new Tile(TileColor::NONE, this);
+		workshopTiles[i] = new Tile(TileColor::NONE, this);
 	}
 }
 
@@ -36,18 +53,18 @@ void TilesWorkshop::addLayout() {
 
 	for (int i = 0, j = 0; i < 4; ++i) {
 		//temporary color
-		WorkshopTiles[i] = new Tile(TileColor::RED, this);
+		workshopTiles[i] = new Tile(TileColor::RED, this);
 
 		int posX = (offset + (spacing + newTileSize) * (i % 2));
 		int posY = (offset + (spacing + newTileSize) * (j % 2));
 
-		WorkshopTiles[i]->setPos(posX, posY);
+		workshopTiles[i]->setPos(posX, posY);
 
 		if (i % 2)
 			j++;
 
 		int newSize = (this->pixmap().width() + this->pixmap().height()) / (2 * 5);
-		WorkshopTiles[i]->resize(QSize(newSize, newSize));
+		workshopTiles[i]->resize(QSize(newSize, newSize));
 	}
 	this->update();
 }
@@ -59,10 +76,10 @@ void TilesWorkshop::addLayout() {
 //	}
 //}
 
-void TilesWorkshop::ClearWorkshop()
+void TilesWorkshop::clearWorkshop()
 {
 	for (int i = 0; i < 4; ++i) {
-		WorkshopTiles[i]->changeColor(TileColor::NONE);
+		workshopTiles[i]->changeColor(TileColor::NONE);
 	}
 }
 

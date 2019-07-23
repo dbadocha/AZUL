@@ -35,7 +35,7 @@ void GameBoard::createNewGame(int PlayersCount)
 	workshopsAmount = 2 * PlayersCount + 1;
 	for (int i = 0; i <= workshopsAmount; ++i)
 	{
-		TilesWorkshop * tmp = new TilesWorkshop();
+		TilesWorkshop * tmp = new TilesWorkshop(i);
 		gameWorkshops.push_back(tmp);
 		scene->addItem(tmp);
 	}

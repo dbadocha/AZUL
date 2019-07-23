@@ -14,22 +14,22 @@ class Tile : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 
-public:
-	Tile(TileColor color, QGraphicsItem *parent = 0);
-	~Tile();
-	void changeColor(TileColor color);
-	void resize(QSize newSize);
-	TileColor getColor();
+private:
+	TileColor m_color;
+	void loadPixmap();
+	void changeCursor(TileColor newColor);
+	static QString tileMimeType() { return QStringLiteral("tile"); }
 
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent * event);
 	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
 	void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 	void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
-	//QMimeData * mimeData(const QModelIndexList &indexes);
 
-private:
-	TileColor m_color;
-	void loadPixmap();
-	void changeCursor(TileColor newColor);
+public:
+	Tile(TileColor color, QGraphicsItem *parent = 0);
+	~Tile();
+	void changeColor(TileColor color);
+	void resize(QSize newSize);
+	TileColor getColor();
 };

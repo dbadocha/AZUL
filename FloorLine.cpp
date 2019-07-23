@@ -2,7 +2,7 @@
 
 FloorLine::FloorLine(QPoint point, QSize tileSize, double spacing, QGraphicsItem *parent)
 	: QGraphicsRectItem(parent)
-	, floorSlotLine(7, tileSize, spacing, this)
+	, floorSlotLine(10, 7, tileSize, spacing, this)
 {
 	this->setPos(point);
 }

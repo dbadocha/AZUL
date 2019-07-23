@@ -18,10 +18,6 @@ private:
 	void resizeSlot(QSize size);
 	void resizeTile(QSize size);
 
-protected:
-	void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
-	void dragLeaveEvent(QGraphicsSceneDragDropEvent *event);
-
 public:
 	TileSlot(QPoint point, QSize size, QGraphicsRectItem *parent);
 	~TileSlot();
