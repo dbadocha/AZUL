@@ -9,8 +9,6 @@ class FloorLine : public QObject, public QGraphicsRectItem
 	Q_OBJECT
 
 private:
-	QSize tileSize = { 200, 200 };
-
 	QVector<Tile*> floorTiles;
 	TileSlotLines floorSlotLine;
 	void emptyLine();

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QVector>
 #include "TileSlotLines.h"
 
 class PatternLines : public QObject, public QGraphicsRectItem
@@ -9,8 +10,9 @@ class PatternLines : public QObject, public QGraphicsRectItem
 
 private:
 	QVector<TileSlotLines*> slotLines;
+	void initializeSlotLines(QSize tileSize, double spacing);
+
 public:
-	
-	PatternLines(QGraphicsObject *parent);
+	PatternLines(QPoint point, QSize tileSize, double spacing, QGraphicsItem *parent);
 	~PatternLines();
 };

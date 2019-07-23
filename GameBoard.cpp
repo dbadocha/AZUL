@@ -41,10 +41,10 @@ void GameBoard::createNewGame(int PlayersCount)
 	}
 
 	for (int i = 0; i < PlayersCount; ++i) {
-		PlayersBoard * tmp = new PlayersBoard(scene);
+		PlayersBoard * tmp = new PlayersBoard();
 		playerBoard.push_back(tmp);
 		playerBoard[i]->setPos(QPoint(50, 50));
-		//scene->addItem(tmp);
+		scene->addItem(tmp);
 	}
 
 	pile = new TilesPile();

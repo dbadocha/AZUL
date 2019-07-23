@@ -1,14 +1,12 @@
 #pragma once
 
-#include "Tile.h"
-#include "TileSlotLines.h"
-
 #include <QGraphicsPixmapItem>
 #include <QWidget>
 #include <QVector>
 #include <QGraphicsPixmapItem>
 
 #include "FloorLine.h"
+#include "PatternLines.h"
 
 #define TILES_ROWS 5
 
@@ -18,25 +16,16 @@ class PlayersBoard : public QObject, public QGraphicsPixmapItem
 
 private:
 	int points = 0;
-
+	QSize tileSize = {10, 10};
 	FloorLine* floorLine;
-
-	QVector<QVector<Tile*>> finishedTiles;
-	QVector<QVector<Tile*>> unfinishedTiles;
+	PatternLines* patternLines;
 
 	void loadPixmap();
-
 	void initFloorLine();
-	void initFinishedTiles();
-	void initUnfinishedTiles();
-
-	void drawTrashedTiles();
-	void drawPointsMarker();
-	void drawUnfinishedTiles();
-	void drawFinishedTiles();
+	void initPatternLines();
 
 public:
-	PlayersBoard(QGraphicsScene * scene, QObject *parent = 0);
+	PlayersBoard(QObject *parent = 0);
 	~PlayersBoard();
 	void resize(QSize newSize);
 };
