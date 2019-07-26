@@ -17,7 +17,7 @@ TilesManager::~TilesManager()
 }
 
 
-TileColor TilesManager::DrawTile()
+TileColor TilesManager::DrawColor()
 {
 	int PouchTitleAmount = GetTilesCount();
 	if (PouchTitleAmount < 1)

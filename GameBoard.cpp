@@ -35,7 +35,7 @@ void GameBoard::createNewGame(int PlayersCount)
 	workshopsAmount = 2 * PlayersCount + 1;
 	for (int i = 0; i <= workshopsAmount; ++i)
 	{
-		TilesWorkshop * tmp = new TilesWorkshop(i);
+		TilesWorkshop * tmp = new TilesWorkshop();
 		gameWorkshops.push_back(tmp);
 		scene->addItem(tmp);
 	}
@@ -69,8 +69,8 @@ void GameBoard::addLayout() {
 		posY = r * cos(a) + offsetY - newWorkshopSize / 2;
 		a += 2 * M_PI / workshopsAmount;
 		(*gameWorkshopsIterator)->setPos(posX, posY);
-		(*gameWorkshopsIterator)->resize(QSize(newWorkshopSize, newWorkshopSize));
-		(*gameWorkshopsIterator)->addTiles();
+		//(*gameWorkshopsIterator)->resize(QSize(newWorkshopSize, newWorkshopSize));
+		//(*gameWorkshopsIterator)->addTiles();
 	}
 
 	for (playerBoardIterator = playerBoard.begin(); playerBoardIterator != playerBoard.end(); ++playerBoardIterator)

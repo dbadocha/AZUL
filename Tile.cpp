@@ -1,9 +1,10 @@
 #include "Tile.h"
 
 
-Tile::Tile(TileColor color, QGraphicsItem *parent)
+Tile::Tile(TileColor color, TileSlotContainer *parent)
 	: QGraphicsPixmapItem(parent)
 {
+	containerHandler = parent;
 	m_color = color;
 	changeCursor(color);
 	loadPixmap();
@@ -19,8 +20,6 @@ void Tile::changeColor(TileColor color) {
 	this->loadPixmap();
 	this->update();
 }
-
-
 
 void Tile::loadPixmap()
 {
@@ -57,6 +56,11 @@ void Tile::changeCursor(TileColor newColor) {
 	}
 }
 
+void Tile::slotChange(TileSlotContainer * newSlot)
+{
+	containerHandler = newSlot;
+}
+
 void Tile::resize(QSize newSize)
 {
 	this->setPixmap(this->pixmap().scaled(newSize));
@@ -69,10 +73,11 @@ void Tile::mousePressEvent(QGraphicsSceneMouseEvent * event)
 
 	QByteArray itemData;
 	QDataStream dataStream(&itemData, QIODevice::WriteOnly);
+
+	qDebug() << containerHandler->getColorAmount(m_color);
 	dataStream << this;
 
 	QMimeData *mimeData = new QMimeData;
-	mimeData->setData(tileMimeType(), itemData);
 }
 
 void Tile::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
@@ -95,11 +100,6 @@ TileColor Tile::getColor()
 {
 	return m_color;
 }
-
-//QMimeData * Tile::mimeData(const QModelIndexList &indexes) {
-//
-//}
-
 
 void Tile::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
 	if (this->m_color != TileColor::NONE) {

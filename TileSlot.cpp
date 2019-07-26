@@ -24,8 +24,38 @@ void TileSlot::resizeSlot(QSize size)
 
 void TileSlot::resizeTile(QSize size)
 {
-	if (slotTile != NULL)
-		slotTile->resize(size);
+	if (tile != NULL)
+		tile->resize(size);
+}
+
+void TileSlot::addTile(Tile* tileToken)
+{
+	tile = tileToken;
+	int width = this->rect().size().width();
+	int height = this->rect().size().height();
+	resizeTile(QSize(width, height));
+}
+
+int TileSlot::isEmpty()
+{
+	if (tile == NULL)
+		return 1;
+	else
+		return 0;
+}
+
+Tile* TileSlot::returnTile()
+{
+	Tile* ret = tile;
+	tile = NULL;
+	return ret;
+}
+
+TileColor TileSlot::getColor()
+{
+	if (tile != NULL)
+		return tile->getColor();
+	return TileColor::NONE;
 }
 
 void TileSlot::highlight(slotHighlightColor color)
@@ -44,27 +74,4 @@ void TileSlot::highlight(slotHighlightColor color)
 	case slotHighlightColor::RED:
 		this->setBrush(QColor(255, 0, 0, 100));
 	}
-}
-
-void TileSlot::addTile(Tile* tileToken)
-{
-	slotTile = tileToken;
-	int width = this->rect().size().width();
-	int height = this->rect().size().height();
-	resizeTile(QSize(width, height));
-}
-
-int TileSlot::isEmpty()
-{
-	if (slotTile == NULL)
-		return 1;
-	else
-		return 0;
-}
-
-Tile* TileSlot::returnTile()
-{
-	Tile* ret = slotTile;
-	slotTile = NULL;
-	return ret;
 }

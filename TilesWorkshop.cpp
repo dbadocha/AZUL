@@ -1,23 +1,23 @@
 #include "TilesWorkshop.h"
 
-TilesWorkshop::TilesWorkshop(int workshopID, QGraphicsItem *parent)
+TilesWorkshop::TilesWorkshop(QGraphicsItem *parent)
 	: QGraphicsPixmapItem(parent)
+	
 {
-	this->workshopID = workshopID;
-	this->loadPixmap();
+	loadPixmap();
+	initializeSlotLines();
 }
 
-TilesWorkshop::~TilesWorkshop()
+void TilesWorkshop::initializeSlotLines()
 {
-	for (int i = 0, j = 0; i < 4; ++i) {
-		delete workshopTiles[i];
-		workshopTiles[i] = NULL;
-	}
-}
+	int width = this->pixmap().width() / 4.5;
+	int height = this->pixmap().height() / 4.5;
+	double spacing = this->pixmap().width() / 10;
+	slotLines = new TileSlotSquare(2, 4, QSize(width, height), spacing, this);
 
-void TilesWorkshop::addTiles() {
-	this->initTiles();
-	this->addLayout();
+	int x = this->pixmap().width() / 2 - slotLines->width() / 2;
+	int y = this->pixmap().height() / 2 - slotLines->height() / 2;
+	slotLines->setPos(x, y);
 }
 
 int TilesWorkshop::getID()
@@ -25,72 +25,13 @@ int TilesWorkshop::getID()
 	return this->workshopID;
 }
 
-int TilesWorkshop::getTilesAmount(TileColor color)
-{
-	int colorAmount = 0;
-	for (int i = 0; i < 4; ++i)
-	{
-		if (workshopTiles[i]->getColor() == color)
-			++colorAmount;
-	}
-	return colorAmount;
-}
-
-void TilesWorkshop::initTiles() {
-	for (int i = 0, j = 0; i < 4; ++i) {
-		workshopTiles[i] = new Tile(TileColor::NONE, this);
-	}
-}
-
-void TilesWorkshop::addLayout() {
-	
-	int baseSize = (this->pixmap().width() + this->pixmap().height()) / 2;
-	int newTileSize = baseSize / 5;
-	int tileOffset = newTileSize / 2;
-
-	int spacing = (baseSize / 10);
-	int offset = (baseSize - spacing - 2 * newTileSize) / 2;
-
-	for (int i = 0, j = 0; i < 4; ++i) {
-		//temporary color
-		workshopTiles[i] = new Tile(TileColor::RED, this);
-
-		int posX = (offset + (spacing + newTileSize) * (i % 2));
-		int posY = (offset + (spacing + newTileSize) * (j % 2));
-
-		workshopTiles[i]->setPos(posX, posY);
-
-		if (i % 2)
-			j++;
-
-		int newSize = (this->pixmap().width() + this->pixmap().height()) / (2 * 5);
-		workshopTiles[i]->resize(QSize(newSize, newSize));
-	}
-	this->update();
-}
-
-//void TilesWorkshop::Refill(Tiles *GameTiles)
-//{
-//	for (int i = 0; i < 4; ++i) {
-//		WorkshopTiles[i] = GameTiles->DrawTile();
-//	}
-//}
-
-void TilesWorkshop::clearWorkshop()
-{
-	for (int i = 0; i < 4; ++i) {
-		workshopTiles[i]->changeColor(TileColor::NONE);
-	}
-}
-
 void TilesWorkshop::loadPixmap()
 {
 	QPixmap tmp(":/images/Resources/Images/Workshop.jpg");
-	this->setPixmap(tmp);
+	/////////////////////temp///////////////////
+	this->setPixmap(tmp.scaled(200, 200, Qt::KeepAspectRatio));
 }
 
-void TilesWorkshop::resize(QSize newSize)
+TilesWorkshop::~TilesWorkshop()
 {
-	this->setPixmap(this->pixmap().scaled(newSize));
-	this->update();
 }

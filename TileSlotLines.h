@@ -1,32 +1,16 @@
 #pragma once
 
-#include <QObject>
-#include <QGraphicsItem>
-#include <QGraphicsRectItem>
-#include <QVector>
-#include "TileSlot.h"
+#include "TileSlotContainer.h"
 
-class TileSlotLines : public QObject, public QGraphicsRectItem
+class TileSlotLines : public TileSlotContainer
 {
 	Q_OBJECT
 private:
-	int slotLineID = 0;
-	QVector <TileSlot*> tileSlotLine;
-	int tilesAmount = 0;
-	void initializeSlots(int amount, QSize tileSize, double spacing);
-
-protected:
-	void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
-	void dragLeaveEvent(QGraphicsSceneDragDropEvent *event);
-	void dropEvent(QGraphicsSceneDragDropEvent *event);
+	void initializeSlots();
 
 public:
-	TileSlotLines(int slotLineID, int amount, QSize size, double spacing, QGraphicsItem *parent = 0);
+	TileSlotLines(int amount, QSize size, double spacing, QGraphicsItem *parent = 0);
 	~TileSlotLines();
-
-	void highlight(int amount, slotHighlightColor color);
-	void addTiles(QVector <Tile*> * inputTiles);
-	void emptySlots();
-	int size();
-	int getID();
+	int width();
+	int height();
 };

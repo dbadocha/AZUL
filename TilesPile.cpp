@@ -37,12 +37,12 @@ void TilesPile::resize(QSize newSize)
 
 void TilesPile::addTile(TileColor newTile)
 {
-	Tile * tmp = new Tile(newTile, this);
-	int newSize = this->rect().width()  / 8;
-	newSize = tmp->pixmap().width() / 2.5;
-	tmp->resize(QSize(newSize, newSize));
-	Pile.push_back(tmp);
-	rearangeTilePos();
+	//Tile * tmp = new Tile(newTile, this);
+	//int newSize = this->rect().width()  / 8;
+	//newSize = tmp->pixmap().width() / 2.5;
+	//tmp->resize(QSize(newSize, newSize));
+	//Pile.push_back(tmp);
+	//rearangeTilePos();
 }
 
 

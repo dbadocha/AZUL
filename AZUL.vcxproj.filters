@@ -84,14 +84,20 @@
     <ClCompile Include="FloorLine.cpp">
       <Filter>Source Files\Player%27s Board</Filter>
     </ClCompile>
-    <ClCompile Include="TileSlotLines.cpp">
-      <Filter>Source Files\Tile</Filter>
-    </ClCompile>
     <ClCompile Include="GameBoard.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="SizeData.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSlotContainer.cpp">
+      <Filter>Source Files\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSlotSquare.cpp">
+      <Filter>Source Files\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSlotLines.cpp">
+      <Filter>Source Files\Tile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +116,6 @@
     <QtMoc Include="Tile.h">
       <Filter>Header Files\Tile</Filter>
     </QtMoc>
-    <QtMoc Include="TileSlot.h">
-      <Filter>Header Files\Tile</Filter>
-    </QtMoc>
     <QtMoc Include="TilesManager.h">
       <Filter>Header Files\Tile</Filter>
     </QtMoc>
@@ -128,11 +131,14 @@
     <QtMoc Include="FloorLine.h">
       <Filter>Header Files\Player%27s Board</Filter>
     </QtMoc>
-    <QtMoc Include="TileSlotLines.h">
-      <Filter>Header Files\Tile</Filter>
-    </QtMoc>
     <QtMoc Include="GameBoard.h">
       <Filter>Header Files\Game</Filter>
+    </QtMoc>
+    <QtMoc Include="TileSlotContainer.h">
+      <Filter>Header Files\Tile</Filter>
+    </QtMoc>
+    <QtMoc Include="TileSlotLines.h">
+      <Filter>Header Files\Tile</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +167,12 @@
     </ClInclude>
     <ClInclude Include="SizeData.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TileSlot.h">
+      <Filter>Header Files\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="TileSlotSquare.h">
+      <Filter>Header Files\Tile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,16 +9,19 @@
 
 #include "Enum.h"
 #include "ui_Tile.h"
+#include "TileSlotContainer.h"
 
+class TileSlotContainer;
 class Tile : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 
 private:
 	TileColor m_color;
+	TileSlotContainer* containerHandler;
 	void loadPixmap();
 	void changeCursor(TileColor newColor);
-	static QString tileMimeType() { return QStringLiteral("tile"); }
+	void slotChange(TileSlotContainer* newSlot);
 
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent * event);
@@ -27,7 +30,7 @@ protected:
 	void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
 
 public:
-	Tile(TileColor color, QGraphicsItem *parent = 0);
+	Tile(TileColor color, TileSlotContainer *parent = 0);
 	~Tile();
 	void changeColor(TileColor color);
 	void resize(QSize newSize);

@@ -9,12 +9,12 @@
 enum class slotHighlightColor
 {OFF, GREEN, BLUE, RED};
 
+class Tile;
 class TileSlot : public QObject, public QGraphicsRectItem
 {
-	Q_OBJECT
-
 private:
-	Tile* slotTile = NULL;
+	Tile* tile = NULL;
+
 	void resizeSlot(QSize size);
 	void resizeTile(QSize size);
 
@@ -27,4 +27,5 @@ public:
 	void addTile(Tile* tileToken);
 	int isEmpty();
 	Tile* returnTile();
+	TileColor getColor();
 };

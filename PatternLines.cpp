@@ -8,7 +8,7 @@ void PatternLines::initializeSlotLines(QSize tileSize, double spacing)
 	{
 		posX = j * (tileSize.width() + spacing);
 		posY = i * (tileSize.height() + spacing);
-		slotLines.push_back(new TileSlotLines(i+1, i+1, tileSize, spacing, this));
+		slotLines.push_back(new TileSlotLines(i+1, tileSize, spacing, this));
 		slotLines[i]->setPos(posX, posY);
 	}
 }

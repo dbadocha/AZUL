@@ -5,27 +5,21 @@
 #include <QGraphicsScene>
 
 #include "Tile.h"
+#include "TileSlotSquare.h"
 
 class TilesWorkshop : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 
 private:
-	int workshopID = 0;
-	Tile *workshopTiles[4];
-	void addLayout();
-	void initTiles();
+	uint32_t workshopID = reinterpret_cast<uint32_t>(this);
+	TileSlotSquare* slotLines;
+	void initializeSlotLines();
 	void loadPixmap();
 
 public:
-	TilesWorkshop(int workshopID, QGraphicsItem *parent = 0);
+	TilesWorkshop(QGraphicsItem *parent = 0);
 	~TilesWorkshop();
-	//void Refill(Tiles *GameTiles);
-	void clearWorkshop();
-	void resize(QSize newSize);
-	void addTiles();
-	int getID();
-	int getTilesAmount(TileColor color);
-};
 
-//QGraphicsEllipseItem
+	int getID();
+};
