@@ -18,9 +18,6 @@ GameBoard::GameBoard(QWidget *parent) : QGraphicsView(parent)
 
 GameBoard::~GameBoard()
 {
-	//delete GameTiles;
-	//GameTiles = NULL;
-
 	for (TilesWorkshop* i : gameWorkshops){
 		delete i;
 		i = NULL;
@@ -40,16 +37,15 @@ void GameBoard::createNewGame(int PlayersCount)
 		scene->addItem(tmp);
 	}
 
-	for (int i = 0; i < PlayersCount; ++i) {
-		PlayersBoard * tmp = new PlayersBoard();
-		playerBoard.push_back(tmp);
-		playerBoard[i]->setPos(QPoint(50, 50));
-		scene->addItem(tmp);
-	}
+	//for (int i = 0; i < PlayersCount; ++i) {
+	//	PlayersBoard * tmp = new PlayersBoard();
+	//	playerBoard.push_back(tmp);
+	//	playerBoard[i]->setPos(QPoint(50, 50));
+	//	scene->addItem(tmp);
+	//}
 
-	pile = new TilesPile();
+	pile = new TilesPile(QSize(40, 40));
 	scene->addItem(pile);
-
 
 	this->addLayout();
 }
@@ -81,10 +77,9 @@ void GameBoard::addLayout() {
 		(*playerBoardIterator)->resize(QSize(newPlayerBoardSize, newPlayerBoardSize));
 	}
 
-	posX = offsetX - newPileSize / 2;
-	posY = offsetY - newPileSize / 2;
+	posX = offsetX;
+	posY = offsetY;
 	pile->setPos(posX, posY);
-	pile->resize(QSize(newPileSize, newPileSize));
 }
 
 

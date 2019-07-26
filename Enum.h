@@ -55,7 +55,7 @@ inline std::string operator+=(std::string& in, const TileColor f) {
 
 typedef Iterator<TileColor, TileColor::BLUE, TileColor::YELLOW> TileColorIterator;
 
-//**************************************************************************
+
 
 struct TileField {
 	TileColor Color = {};

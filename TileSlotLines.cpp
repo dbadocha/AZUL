@@ -33,7 +33,7 @@ void TileSlotLines::initializeSlots()
 		tilePosition.setX(x);
 		tileSlots.push_back(new TileSlot(tilePosition, tileSize, this));
 		////////////////////////////////////temp/////////////////////
-		tileSlots[i]->highlight(slotHighlightColor::GREEN);
+		tileSlots.back()->highlight(slotHighlightColor::GREEN);
 	}
 }
 

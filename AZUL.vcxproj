@@ -125,6 +125,7 @@
     <ClCompile Include="TileSlot.cpp" />
     <ClCompile Include="TileSlotContainer.cpp" />
     <ClCompile Include="TileSlotLines.cpp" />
+    <ClCompile Include="TileSlotSpiral.cpp" />
     <ClCompile Include="TileSlotSquare.cpp" />
     <ClCompile Include="TilesManager.cpp" />
     <ClCompile Include="TilesPile.cpp" />
@@ -172,6 +173,10 @@
   <ItemGroup>
     <ClInclude Include="Enum.h" />
     <ClInclude Include="SizeData.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
+    </ClInclude>
+    <ClInclude Include="TileSlotSpiral.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets</IncludePath>
     </ClInclude>

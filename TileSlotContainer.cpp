@@ -15,16 +15,21 @@ TileSlotContainer::~TileSlotContainer()
 void TileSlotContainer::addTiles(QVector<Tile*>* inputTiles)
 {
 	Tile * tileToken = NULL;
-
-	for (int i = tilesAmount; i < tileSlots.size(); ++i)
-	{
-		if (tileSlots[i]->isEmpty())
-		{
-			tileToken = inputTiles->at(i);
-			tileSlots[i]->addTile(tileToken);
-			++tilesAmount;
-		}
+	
+	for (QVector<Tile*>::iterator it = inputTiles->begin(); it != inputTiles->end(); ++it) {
+		tileSlots[tilesAmount]->addTile(*it);
+		(*it)->slotChange(this);
 	}
+
+	//for (int i = tilesAmount; i < tileSlots.size(); ++i)
+	//{
+	//	if (tileSlots[i]->isEmpty())
+	//	{
+	//		tileToken = inputTiles->at(i);
+	//		tileSlots[i]->addTile(tileToken);
+	//		++tilesAmount;
+	//	}
+	//}
 }
 
 void TileSlotContainer::emptySlots()

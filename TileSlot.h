@@ -21,7 +21,6 @@ private:
 public:
 	TileSlot(QPoint point, QSize size, QGraphicsRectItem *parent);
 	~TileSlot();
-
 	void resize(QSize size);
 	void highlight(slotHighlightColor color);
 	void addTile(Tile* tileToken);

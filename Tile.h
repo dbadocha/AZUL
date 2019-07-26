@@ -21,7 +21,6 @@ private:
 	TileSlotContainer* containerHandler;
 	void loadPixmap();
 	void changeCursor(TileColor newColor);
-	void slotChange(TileSlotContainer* newSlot);
 
 protected:
 	void mousePressEvent(QGraphicsSceneMouseEvent * event);
@@ -30,6 +29,7 @@ protected:
 	void dragEnterEvent(QGraphicsSceneDragDropEvent *event);
 
 public:
+	void slotChange(TileSlotContainer* newSlot);
 	Tile(TileColor color, TileSlotContainer *parent = 0);
 	~Tile();
 	void changeColor(TileColor color);
